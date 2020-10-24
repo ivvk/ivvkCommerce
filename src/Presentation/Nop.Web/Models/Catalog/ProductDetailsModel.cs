@@ -85,6 +85,14 @@ namespace Nop.Web.Models.Catalog
 
         public string PageShareCode { get; set; }
 
+        #region to display Weight & dimentions on the product details page
+        public decimal Weight { get; set; }
+        public decimal Length { get; set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
+        #endregion
+
+
         public ProductPriceModel ProductPrice { get; set; }
 
         public AddToCartModel AddToCart { get; set; }

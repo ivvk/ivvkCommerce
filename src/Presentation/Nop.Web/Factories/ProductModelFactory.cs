@@ -1168,6 +1168,12 @@ namespace Nop.Web.Factories
                 ManufacturerPartNumber = product.ManufacturerPartNumber,
                 ShowGtin = _catalogSettings.ShowGtin,
                 Gtin = product.Gtin,
+
+                Weight= product.Weight,
+                Height = product.Height,
+                Width= product.Width,
+                Length= product.Length,
+
                 ManageInventoryMethod = product.ManageInventoryMethod,
                 StockAvailability = _productService.FormatStockMessage(product, string.Empty),
                 HasSampleDownload = product.IsDownload && product.HasSampleDownload,

@@ -76,26 +76,42 @@
                             </div>
                         }
                         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsOverviewTop, additionalData = Model })
-                        <div class="product-info">
-                            <!--manufacturers-->
-                            @await Html.PartialAsync("_ProductManufacturers", Model.ProductManufacturers)
-                            <!--availability-->
-                            @await Html.PartialAsync("_Availability", Model)
-                            <!--SKU, MAN, GTIN, vendor-->
-                            @await Html.PartialAsync("_SKU_Man_GTIN_Ven", Model)
-                            <!--delivery-->
-                            @await Html.PartialAsync("_DeliveryInfo", Model)
-                            <!--sample download-->
-                            @await Html.PartialAsync("_DownloadSample", Model)
-                            <!--price-->
-                            @{
-                                var dataDictPrice = new ViewDataDictionary(ViewData);
-                                dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{Model.Id}";
-                                @await Html.PartialAsync("_ProductPrice", Model.ProductPrice, dataDictPrice)
-                                                            @await Html.PartialAsync("_ProductTierPrices", Model.TierPrices)
-                            }
-                            @await Html.PartialAsync("_ProductEmailAFriendButton", Model)
+                    <div class="product-info">
+                        <!--manufacturers-->
+                        @await Html.PartialAsync("_ProductManufacturers", Model.ProductManufacturers)
+                        <!--availability-->
+                        @await Html.PartialAsync("_Availability", Model)
+                        <!--SKU, MAN, GTIN, vendor-->
+                        @await Html.PartialAsync("_SKU_Man_GTIN_Ven", Model)
+                        <div>
+                            <span class="label">@T("admin.catalog.products.fields.weight"):</span>
+                            <span class="value">@Model.Weight</span>
                         </div>
+                        <div>
+                            <span class="label">@T("admin.catalog.products.fields.width"):</span>
+                            <span class="value">@Model.Width</span>
+                        </div>
+                        <div>
+                            <span class="label">@T("admin.catalog.products.fields.length"):</span>
+                            <span class="value">@Model.Length</span>
+                        </div>
+                        <div>
+                            <span class="label">@T("admin.catalog.products.fields.height"):</span>
+                            <span class="value">@Model.Height</span>
+                        </div>
+                        <!--delivery-->
+                        @await Html.PartialAsync("_DeliveryInfo", Model)
+                        <!--sample download-->
+                        @await Html.PartialAsync("_DownloadSample", Model)
+                        <!--price-->
+                        @{
+                            var dataDictPrice = new ViewDataDictionary(ViewData);
+                            dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{Model.Id}";
+                            @await Html.PartialAsync("_ProductPrice", Model.ProductPrice, dataDictPrice)
+                            @await Html.PartialAsync("_ProductTierPrices", Model.TierPrices)
+                        }
+                        @await Html.PartialAsync("_ProductEmailAFriendButton", Model)
+                    </div>
                         <!--attributes-->
                         @{
                             var dataDictAttributes = new ViewDataDictionary(ViewData);
