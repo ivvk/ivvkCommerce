@@ -232,7 +232,9 @@ namespace Nop.Web.Infrastructure
             //login page for checkout as guest
             endpointRouteBuilder.MapControllerRoute("LoginCheckoutAsGuest", $"{pattern}login/checkoutasguest",
                 new { controller = "Customer", action = "Login", checkoutAsGuest = true });
-
+            //PhoneVerification
+            endpointRouteBuilder.MapControllerRoute("PhoneVerificationPage", pattern + "phoneverification/{customerid?}",
+                new { controller = "Customer", action = "PhoneVerification" });
             //register result page
             endpointRouteBuilder.MapControllerRoute("RegisterResult",
                 pattern + "registerresult/{resultId:min(0)}",

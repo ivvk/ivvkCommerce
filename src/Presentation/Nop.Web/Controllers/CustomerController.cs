@@ -436,7 +436,7 @@ namespace Nop.Web.Controllers
 
                             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
                                 return RedirectToRoute("Homepage");
-
+                           
                             return Redirect(returnUrl);
                         }
                     case CustomerLoginResults.CustomerNotExist:
@@ -963,10 +963,12 @@ namespace Nop.Web.Controllers
 
                                 //raise event       
                                 _eventPublisher.Publish(new CustomerActivatedEvent(customer));
+                                //test
+                                return RedirectToRoute("PhoneVerificationPage", new { customerid = customer.Id });
 
-                                var redirectUrl = Url.RouteUrl("RegisterResult",
-                                    new { resultId = (int)UserRegistrationType.Standard, returnUrl }, _webHelper.CurrentRequestProtocol);
-                                return Redirect(redirectUrl);
+                                //var redirectUrl = Url.RouteUrl("RegisterResult",
+                                //    new { resultId = (int)UserRegistrationType.Standard, returnUrl }, _webHelper.CurrentRequestProtocol);
+                                //return Redirect(redirectUrl);
                             }
                         default:
                             {
@@ -1080,6 +1082,32 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
+        #endregion
+
+        #region phone verification
+        [HttpsRequirement]
+        public virtual IActionResult PhoneVerification(int? customerid)
+        {
+
+            List<GenericAttribute> attributes = _genericAttributeService.GetAttributesForEntity((int)customerid, "Customer").ToList();
+            var phoneattr = attributes.FirstOrDefault(ee => ee.Key == "Phone");
+            PhoneVerificationModel phoneVerificationModel = new PhoneVerificationModel
+            {
+                Id = (int)customerid,
+                PhoneNumber = phoneattr != null ? phoneattr.Value.ToString() : ""
+            };
+
+            return View(phoneVerificationModel);
+        }
+        [HttpPost]
+        //available even when a store is closed
+        [CheckAccessClosedStore(true)]
+        //available even when navigation is not allowed
+        [CheckAccessPublicStore(true)]
+        public virtual IActionResult PhoneVerification()
+        {
+            return View();
+        }
         #endregion
 
         #region My account / Info
