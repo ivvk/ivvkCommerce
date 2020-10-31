@@ -964,7 +964,7 @@ namespace Nop.Web.Controllers
                                 //raise event       
                                 _eventPublisher.Publish(new CustomerActivatedEvent(customer));
                                 //test
-                                return RedirectToRoute("PhoneVerificationPage", new { customerid = customer.Id });
+                                return RedirectToRoute("PhoneVerificationPage", new { customerid = customer.Id , returnUrl= returnUrl });
 
                                 //var redirectUrl = Url.RouteUrl("RegisterResult",
                                 //    new { resultId = (int)UserRegistrationType.Standard, returnUrl }, _webHelper.CurrentRequestProtocol);
@@ -1086,7 +1086,7 @@ namespace Nop.Web.Controllers
 
         #region phone verification
         [HttpsRequirement]
-        public virtual IActionResult PhoneVerification(int? customerid)
+        public virtual IActionResult PhoneVerification(int? customerid , string returnUrl)
         {
 
             List<GenericAttribute> attributes = _genericAttributeService.GetAttributesForEntity((int)customerid, "Customer").ToList();
@@ -1104,9 +1104,12 @@ namespace Nop.Web.Controllers
         [CheckAccessClosedStore(true)]
         //available even when navigation is not allowed
         [CheckAccessPublicStore(true)]
-        public virtual IActionResult PhoneVerification()
+        public virtual IActionResult PhoneVerification(string returnUrl)
         {
-            return View();
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+                return RedirectToRoute("Homepage");
+
+            return Redirect(returnUrl);
         }
         #endregion
 

@@ -1,5 +1,4 @@
-﻿// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+﻿const firebaseConfig = {
   apiKey: "AIzaSyDFegY-o71J9jW6_wmGw2sdg0ZQp4EuNc8",
   authDomain: "nopcommerce-e42f7.firebaseapp.com",
   databaseURL: "https://nopcommerce-e42f7.firebaseio.com",
@@ -9,6 +8,7 @@ const firebaseConfig = {
   appId: "1:462895795064:web:d2b330a8632127a575968d",
   measurementId: "G-RFNFKJCGTV"
 };
+
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -20,7 +20,7 @@ window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('SubmitBtn', {
   'size': 'invisible',
   'callback': function (response) {
     // reCAPTCHA solved, allow signInWithPhoneNumber.
-    alert('1');
+    //alert('1');
     onSignInSubmit();
   }
 });
@@ -28,15 +28,16 @@ window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('SubmitBtn', {
 window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('reCAPTCHA', {
   'size': 'normal',
   'callback': function (response) {
-    debugger
+
     sendCode();
+    showConfirmBtn();
   },
   'expired-callback': function () {
     // Response expired. Ask user to solve reCAPTCHA again.
     // ...
   }
 });
-window.recaptchaVerifier.render().then(function (widgetId) {
+recaptchaVerifier.render().then(function (widgetId) {
   window.recaptchaWidgetId = widgetId;
 
 });
@@ -44,13 +45,14 @@ window.recaptchaVerifier.render().then(function (widgetId) {
 //var recaptchaResponse = grecaptcha.getResponse(window.recaptchaWidgetId);
 
 function Succeeded() {
-  alert('Succeeded');
+  showSubmitBtn();
+  hideConfirmBtn();
+  //alert('Succeeded');
 }
 function SignInFailed() {
-  alert('SignInFailed');
+  //alert('SignInFailed');
 }
 function confirm() {
-  alert('confirm');
   var code = document.getElementById('Code').value;
   //$("#Code").val();
   window.confirmationResult.confirm(code).then(function (result) {
@@ -67,7 +69,6 @@ function confirm() {
 }
 
 function sendCode() {
-  alert('sendCode');
   var phoneNumber = document.getElementById('PhoneNumber').value;
   //$("#PhoneNumber").val();// "01206173975"
   var appVerifier = window.recaptchaVerifier;
@@ -84,4 +85,17 @@ function sendCode() {
 
 function onSignInSubmit() {
   alert('onSignInSubmit');
+}
+function showConfirmBtn() {
+  $('#ConfirmBtn').show();
+}
+function showSubmitBtn() {
+  $('#SubmitBtn').show();
+}
+
+function hideConfirmBtn() {
+  $('#ConfirmBtn').hide();
+}
+function hideSubmitBtn() {
+  $('#SubmitBtn').hide();
 }
