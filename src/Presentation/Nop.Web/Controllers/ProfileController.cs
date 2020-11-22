@@ -13,7 +13,7 @@ namespace Nop.Web.Controllers
         private readonly ICustomerService _customerService;
         private readonly IPermissionService _permissionService;
         private readonly IProfileModelFactory _profileModelFactory;
-        //
+        // //
         public ProfileController(CustomerSettings customerSettings,
             ICustomerService customerService,
             IPermissionService permissionService,
