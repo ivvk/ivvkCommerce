@@ -1601,12 +1601,12 @@ article:after,
 
 /* ================== header main ==================  */
 .header-main {
-  padding-top: 1rem;
-  padding-bottom: 1rem; }
+  padding-top: .51rem;
+  padding-bottom: .51rem; }
 
 .brand-wrap .logo, .navbar-brand .logo {
   margin-right: 7px;
-  max-height: 42px;
+  max-height: 62px;
   display: inline-block; }
 .brand-wrap .logo-text, .navbar-brand .logo-text {
   margin: 0;
