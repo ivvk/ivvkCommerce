@@ -2,39 +2,7 @@
 @if (Model.NewsItems.Count > 0)
 {
     <div class="news-list-homepage col-12">
-        <div class="row">
-            <h3 class="h2 w-100 text-center">
-                <strong>@T("News")</strong>
-            </h3>
-            <div class="col-12 px-0">
-                <div class="row-sm">
-                    @foreach (var item in Model.NewsItems)
-                    {
-                        <div class="col-lg-4 col-md-6 col-12 mb-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">@item.Title</h4>
-                                    @*<h6 class="card-subtitle mb-2 text-muted">@item.CreatedOn.ToString("D")</h6>*@
-                                    <div class="date-container">
-                                        <div class="date">
-                                            <span class="day">@item.CreatedOn.ToString("dd")</span>
-                                            <span class="month">@item.CreatedOn.ToString("MMMM")</span>
-                                        </div>
-                                    </div>
-                                    <p class="card-text">@Html.Raw(item.Short)</p>
-                                    <div class="w-100 text-center">
-                                        <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="btn btn-primary">@T("News.MoreInfo")</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-            <div class="view-all text-center w-100 my-3">
-                <a class="btn btn-warning" href="@Url.RouteUrl("NewsArchive")">@T("News.ViewAll")</a>
-            </div>
-        </div>
+       
     </div>
 
 }
