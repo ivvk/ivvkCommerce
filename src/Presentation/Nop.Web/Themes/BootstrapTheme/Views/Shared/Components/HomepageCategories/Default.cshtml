@@ -3,13 +3,13 @@
 {
 
     <div class="categoryGrid">
-            @foreach (var item in Model)
-            {
-        <div class="categoryItem card mb-3" id="@item.Id-Kat">
-            
+        @foreach (var item in Model)
+        {
+            <div class="categoryItem card mb-3" id="@item.Id-Kat">
+
                 <article class="card-banner h-100 bg2 category-card ">
                     <div class="card-body zoom-wrap  ">
-                        <div class="row no-gutters w-100" >
+                        <div class="row no-gutters w-100">
                             <div class="col-md-11">
                                 <h5 class="title">
                                     @item.Name
@@ -25,8 +25,8 @@
                     </div>
                     <ul class="subListSubCatRWD hidden-xl-up px-0"></ul>
                 </article>
-                
-         
+
+
 
                 <div class="row no-gutters">
                     <script asp-location="Footer">
@@ -39,34 +39,31 @@
 
                     @* img + subList *@
                     <!--<div class="col-md-3">
-                <article class="card-banner h-100 bg2 category-card">
-                    <div class="card-body zoom-wrap">
-                        <h5 class="title">
-                            @item.Name
-                        </h5>
-                            @Html.Raw(item.Description)
-                        <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" class="btn btn-primary">
-                            @T("homepage.cateogry.button")
-                        </a>-->
+                    <article class="card-banner h-100 bg2 category-card">
+                        <div class="card-body zoom-wrap">
+                            <h5 class="title">
+                                @item.Name
+                            </h5>
+                                @Html.Raw(item.Description)
+                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" class="btn btn-primary">
+                                @T("homepage.cateogry.button")
+                            </a>-->
                     @*<img class="img-bg zoom-in" alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />*@
                     <!--</div>-->
                     @*<ul class="subListSubCatRWD hidden-xl-up px-0"></ul>*@
                     <!--</article>
-            </div>-->
+                    </div>-->
                     @* arr + content + carousel *@
 
                     <div class="CatFeaturedProd  col-md-12">
 
-                        @*<div class="d-flex flex-row mt-2 mb-1 arrowHome">
-                        <i class="owl-prev fa fa-chevron-left text-right ml-auto prev"></i>
-                        <i class="ml-3 owl-prev fa fa-chevron-right text-right next"></i>
-                    </div>*@
+                         
 
                         @* here we load contrent based on ajax request *@
                         <div class="slider p-3">
                             <div class="se-pre-con"></div>
                             <div id="@item.Id-slider" class="swiper-container">
-                                <div class="swiper-wrapper">
+                                <div class="swiper-wrapper" >
 
                                 </div>
                             </div>
@@ -76,8 +73,8 @@
                     </div>
                 </div>
             </div>
-            }
-        </div>
+        }
+    </div>
 
     <script type="text/template" class="sliders">
         ###
@@ -117,11 +114,11 @@
                             </div>
                         </div>
                         @*<div class="count">
-                    <a href="/productreviews/${itId}">
-                        ${TotalReviews}
-                        @T("Reviews.Overview.Reviews")
-                    </a>
-                </div>*@
+                                <a href="/productreviews/${itId}">
+                                    ${TotalReviews}
+                                    @T("Reviews.Overview.Reviews")
+                                </a>
+                            </div>*@
                     </div>
                     <div class="add-to-cart-button">
                         <button type="button" ${cartAddBtnAction} class="btn btn-sm btn-primary m-0 btn-ajax">

@@ -44,6 +44,7 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Remove="Themes\BootstrapTheme\Content\images\icons8-facebook-48.png" />
     <Content Remove="Themes\BootstrapTheme\Content\images\logo.png" />
     <Content Remove="Themes\BootstrapTheme\Content\images\logo_orange_black.png" />
     <Content Remove="Themes\BootstrapTheme\Content\images\logo_orange_white.png" />
